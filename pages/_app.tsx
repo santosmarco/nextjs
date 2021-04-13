@@ -3,6 +3,8 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import Head from "next/head";
 import { useEffect } from "react";
+import { Provider } from "react-redux";
+import store from "../store";
 import "../styles/globals.css";
 import theme from "../theme";
 
@@ -33,4 +35,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-export default App;
+const Root: React.FC<AppProps> = (appProps) => {
+  return (
+    <Provider store={store}>
+      <App {...appProps} />
+    </Provider>
+  );
+};
+
+export default Root;
