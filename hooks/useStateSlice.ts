@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../types";
 
-const useStateSlice = (slice: keyof RootState) => {
-  return useSelector<RootState, RootState[typeof slice]>(
-    (state) => state[slice]
-  );
+const useStateSlice = <T extends keyof RootState>(slice: T) => {
+  return useSelector<RootState, RootState[T]>((state) => state[slice]);
 };
 
 export default useStateSlice;
